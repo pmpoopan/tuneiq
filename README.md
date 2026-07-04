@@ -4,9 +4,7 @@
 
 ## What is TuneIQ?
 
-TuneIQ is an AI-powered music discovery tool that solves a problem Spotify's recommendation engine hasn't fully cracked yet: **users can't see what the algorithm believes about their taste, and can't correct it in their own words.**
-
-Traditional recommendation systems (collaborative filtering) optimize what songs get played — but they can't expose their internal state in human terms or accept open-ended natural language correction. TuneIQ puts an AI layer on top that does exactly that.
+Traditional music recommendation systems learn from user behavior, but they struggle to understand changing intent. Users who actively like, skip, and curate playlists often have no direct way to communicate what they want to discover next. TuneIQ addresses this gap with an AI-powered conversational interface that allows users to express their music preferences in natural language. By combining intent understanding with explainable recommendations, TuneIQ transforms music discovery from passive algorithmic inference into an interactive, personalized experience.
 
 ## 🚀 Live Demo
 
