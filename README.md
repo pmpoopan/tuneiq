@@ -1,7 +1,6 @@
 ﻿# 🎵 TuneIQ — AI-Native Music Taste Profile Manager
 
 
----
 
 ## What is TuneIQ?
 
@@ -9,7 +8,8 @@ TuneIQ is an AI-powered music discovery tool that solves a problem Spotify's rec
 
 Traditional recommendation systems (collaborative filtering) optimize what songs get played — but they can't expose their internal state in human terms or accept open-ended natural language correction. TuneIQ puts an AI layer on top that does exactly that.
 
----
+<img width="1092" height="850" alt="image" src="https://github.com/user-attachments/assets/42443bc4-57e9-4b43-8240-2682f172fd98" />
+
 
 ## The Problem It Solves
 
@@ -22,7 +22,6 @@ Spotify's most engaged users — people who follow artists, dislike tracks, and 
 
 **TuneIQ gives users two things they've never had: transparency and steerability.**
 
----
 
 ## Features
 
@@ -32,7 +31,6 @@ Spotify's most engaged users — people who follow artists, dislike tracks, and 
 - **Quick-steer chips** — one-tap shortcuts for common corrections
 - **Discovery Brief** — 5 real artist/track picks with specific "why this fits you" explanations, refreshed every time your profile changes
 
----
 
 ## Tech Stack
 
@@ -44,7 +42,6 @@ Spotify's most engaged users — people who follow artists, dislike tracks, and 
 | Hosting | Streamlit Cloud |
 | IDE | Antigravity |
 
----
 
 ## Project Structure
 
@@ -69,7 +66,6 @@ tuneiq/
     └── state.py            ← Session state management
 ```
 
----
 
 ## How to Run Locally
 
@@ -97,7 +93,6 @@ Get your free key at [console.groq.com](https://console.groq.com)
 streamlit run app.py
 ```
 
----
 
 ## Deploying on Streamlit Cloud
 
@@ -110,7 +105,6 @@ GROQ_API_KEY = "gsk_your-key-here"
 ```
 5. Click Deploy
 
----
 
 ## Why AI — Not Just a Better Algorithm
 
@@ -121,18 +115,6 @@ GROQ_API_KEY = "gsk_your-key-here"
 | Slow feedback loop (days to weeks) | Instant, confirmed profile updates |
 | Black box — no explainability | Each discovery pick explains why it fits |
 
----
-
-## Project Context
-
-This MVP was built as Part 4 of a NextLeap PM Fellowship graduation project focused on Spotify's music discovery problem. The full project includes:
-
-- **Part 1** — AI-powered review analysis engine (41 tagged excerpts across App Store, Spotify Community, Trustpilot, Product Hunt, and press)
-- **Part 2** — 6 user interviews with Active Tuner segment validation
-- **Part 3** — Problem definition: root cause, target segment, business case
-- **Part 4** — This MVP (TuneIQ), deployed to production
-
----
 
 ## Note on Data
 
