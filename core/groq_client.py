@@ -49,13 +49,14 @@ def _clean_and_parse_json(text: str) -> Any:
         raise
 
 
-def call_groq(messages: list, system: str, max_tokens: int = 900) -> str:
+def call_groq(messages: list, system: str, max_tokens: int = 900, response_format: Optional[dict] = None) -> str:
     """Call the Groq LLM API with the provided messages and system prompt.
 
     Args:
         messages: A list of message dictionaries (role and content).
         system: The system prompt to guide the model.
         max_tokens: The maximum number of tokens to generate.
+        response_format: Optional dictionary specifying response format (e.g. {"type": "json_object"}).
 
     Returns:
         The text response from the Groq API.
@@ -83,11 +84,14 @@ def call_groq(messages: list, system: str, max_tokens: int = 900) -> str:
 
     try:
         client = Groq(api_key=api_key)
-        response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            messages=full_messages,
-            max_tokens=max_tokens,
-        )
+        kwargs = {
+            "model": "llama-3.3-70b-versatile",
+            "messages": full_messages,
+            "max_tokens": max_tokens,
+        }
+        if response_format:
+            kwargs["response_format"] = response_format
+        response = client.chat.completions.create(**kwargs)
         return response.choices[0].message.content
     except Exception as e:
         raise RuntimeError(
@@ -116,11 +120,14 @@ def generate_profile(artists: str, genres: str, tired_of: str) -> dict:
     )
     messages = [{"role": "user", "content": user_msg}]
     
-    response_content = call_groq(messages, PROFILE_SYSTEM_PROMPT)
+    response_content = call_groq(messages, PROFILE_SYSTEM_PROMPT, response_format={"type": "json_object"})
     
     try:
         print("DEBUG RAW PROFILE RESPONSE:", repr(response_content))
-        data = _clean_and_parse_json(response_content)
+        clean = response_content.replace("```json", "").replace("```", "").strip()
+        if not clean.startswith("{"):
+            clean = "{" + clean + "}"
+        data = json.loads(clean)
         if not isinstance(data, dict):
             raise ValueError("Parsed JSON is not a dictionary.")
         return data
@@ -144,7 +151,7 @@ def generate_discovery(profile: dict) -> list:
     user_msg = f"Taste profile: {json.dumps(profile)}"
     messages = [{"role": "user", "content": user_msg}]
     
-    response_content = call_groq(messages, DISCOVERY_SYSTEM_PROMPT, max_tokens=800)
+    response_content = call_groq(messages, DISCOVERY_SYSTEM_PROMPT, max_tokens=800, response_format={"type": "json_object"})
     
     try:
         data = _clean_and_parse_json(response_content)

@@ -10,7 +10,8 @@ PROFILE_SYSTEM_PROMPT: str = (
     "- discovery_appetite: one of \"Low\", \"Medium\", or \"High\" followed by a dash and one sentence explanation\n"
     "- open_to: one sentence about adjacent sounds they're likely to welcome\n"
     "- profile_summary: 2-3 sentence plain-language summary they'd read and nod at\n"
-    "Return ONLY the JSON object. No markdown fences, no other text."
+    "Return ONLY the JSON object. No markdown fences, no other text.\n"
+    "Your response must start with { and end with }. No other text."
 )
 
 DISCOVERY_SYSTEM_PROMPT: str = (
